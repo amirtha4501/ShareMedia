@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>
+            Register
+        </title>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+        <!-- <link rel="stylesheet" href="register.css"> -->
+    </head>
+    <body>
+        <div class="bg-img">
+            <form method="POST" action="/signup">
+                <!-- <img src="img/sky.jpg" alt="background"> -->
+                <div class="login-box">
+                    <h1>
+                        Register
+                    </h1>
+                    <div class="text-box">
+                        <input type="text" required="Required field">
+                        <br>
+                        <label for="fname">First name</label>
+                    </div>
+                    <div class="text-box">
+                        <input type="text" required="Required field">
+                        <br>
+                        <label for="lname">Last name</label>
+                    </div>
+                    <div class="text-box">
+                        <input type="email" required="Required field">
+                        <br>
+                        <label for="email">Mail</label>
+                    </div>
+                    <div class="text-box">
+                        <input type="tel" required="Required field">
+                        <br>
+                        <label for="mobile">Mobile</label>
+                    </div>
+                    <!-- <div class="text-box">            
+                        <input type="text" required="Required field">
+                        <br>
+                        <label for="username">
+                        <i class="fa fa-user" aria-hidden="true"></i>
+                        Username
+                        </label>
+                    </div> -->
+                    <div class="text-box">
+                        <input type="password" required="Required field">
+                        <br>
+                        <label for="password">
+                            <i class="fa fa-key" aria-hidden="true"></i>
+                            Newpassword
+                        </label>
+                    </div>
+                    <!-- <div class="text-box">
+                        <input type="date" placeholder="DOB" required="Required field">
+                        <br>
+                    </div> -->
+                    <div class="text-box-ch">
+                        <label for="gender">Gender</label><br><br>
+                        
+                        <label for="male">
+                            <input type="radio" name="gender" value="Male">    
+                            Male
+                        </label><br>
+                        
+                        <label for="female"> 
+                            <input type="radio" name="gender" value="Female">
+                            Female
+                        </label><br>
+                        
+                        <label for="other"> 
+                            <input type="radio" name="gender" value="Others">
+                            Others
+                        </label><br>
+                        
+                        <hr><br>
+                        
+                        <button class="btn">Register</button>
+                        <a href="login.html">
+                            <button class="btn">Login</button>
+                        </a> 
+                    </div>
+                </div>
+            </form>    
+        </div>
+    </body>
+</html>

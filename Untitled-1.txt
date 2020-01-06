@@ -1,0 +1,167 @@
+    database_data = request.get_json()
+    existing_user_name = User.query.get(database_data['user_name'])
+    existing_email = User.query.get(database_data['email'])
+    existing_mobile = User.query.get(database_data['mobile'])
+    existing_password = User.query.get(database_data['password'])
+
+
+    if existing_user_name:
+        print("User name is already present.")
+        return "User name is already present."
+        # return redirect(url_for('user_signup'))
+
+    if existing_email:
+        print("Your email is already present.")
+        return "Your email is already present."
+        # return redirect(url_for('user_signup'))
+
+    if existing_mobile:
+        print("Your mobile number is already present.")
+        return "Your mobile number is already present."
+        # return redirect(url_for('user_signup'))
+
+    if existing_password:
+        print("Your password is already present.")
+        return "Your password is already present."
+        # return redirect(url_for('user_signup'))
+
+        
+    if already_existing:
+        print("You already bought this book")
+        return "You already bought this book"
+
+
+    existing_user_name = User.query.filter_by(user_id=get_data['user_id']).first()
+    existing_email = User.query.filter_by(user_name=get_data['email']).first()
+    existing_mobile = User.query.filter_by(user_name=get_data['user_name']).first()
+    existing_password = User.query.filter_by(user_name=get_data['password']).first()
+    
+    if existing_user_name:
+        print("User name is already present.")
+        return "User name is already present."
+        # return redirect(url_for('user_signup'))
+
+    if existing_email:
+        print("Your email is already present.")
+        return "Your email is already present."
+        # return redirect(url_for('user_signup'))
+
+    if existing_mobile:
+        print("Your mobile number is already present.")
+        return "Your mobile number is already present."
+        # return redirect(url_for('user_signup'))
+
+    if existing_password:
+        print("Your password is already present.")
+        return "Your password is already present."
+        # return redirect(url_for('user_signup'))
+
+        	"first_name":"a",
+	"last_name":"a",
+	"email":"a@gmail.com",
+	"mobile":"8887999111",
+	"password":"a",
+	"gender":"female"
+
+
+
+@import "https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css";
+
+body {
+    font-family: sans-serif;
+    margin: 0px;
+    overflow: hidden;
+}
+
+.login-box {    
+    width: 280px;
+    position: absolute; /*pos absolute, top & left results the ip field on image*/
+    top: 50%; 
+    left: 50%;
+    transform: translate(-50%,-50%);
+    color: white;
+    /* outline-width: 3px;
+    outline-color: blueviolet; */
+}
+.login-box h1 {
+    float: left;
+    font-size: 40px;
+    margin-bottom: 40px;
+    padding: 13px;
+    margin-left: 25%;
+    border-bottom: 4px solid goldenrod;
+}
+img {
+    background-size: cover;
+    margin: 0em;
+    padding: 0%;
+    width: 100%;
+    filter: brightness(22%);
+}
+
+.text-box {
+    width: 100%;
+    overflow: hidden;
+    font-size: 20px;
+    padding: 8px 0;
+    margin: 8px 0;
+    border-bottom: 1px solid goldenrod;
+}
+
+.text-box i {
+    width: 26px; 
+    float: left;
+    text-align: center;
+}
+.text-box input {
+    border: none;
+    outline: none;
+    background: none;
+    color: white;
+    font-size: 18px;
+    width: 80%;
+    margin: 0 10px;
+}
+
+.btn {
+    width: 100% !important;
+    background: none !important;
+    border: 2px solid limegreen !important;
+    color: white !important;
+    padding: 5px !important;
+    font-size: 18px !important;
+    cursor: pointer !important;
+    outline: none !important;
+    margin-top:     18px !important;
+}   
+
+.text-box-ch {
+   margin-left: 15%;
+}
+
+form div {
+    position: relative !important;
+}
+
+form div label {
+    position: absolute;
+    top: 10px;
+    left: 0;
+    color: white;
+    transition: .5s;
+    pointer-events: none;
+    /* margin-top: 2em; */
+}
+
+.text-box input:valid ~ label,
+.text-box input:focus ~ label {
+    top: 1px !important;
+    left: 0 !important;
+    color: chartreuse !important;
+    font-size: 12px !important;
+    font-weight: bold !important;
+}
+i {
+    /* margin-top: 2em; */
+    margin-right: 1.2em;
+}
