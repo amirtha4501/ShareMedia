@@ -49,4 +49,20 @@ class LoggedUsers(db.Model):
         # db.session.close()
 
     def __repr__(self):
-        return '<Book %r>' % self.user_id
+        return '<Users %r>' % self.user_id
+
+class LoggedUsersPost(db.Model):
+    id = db.Column(db.Integer, primary_key = True)
+    user_id = db.Column(db.Integer, nullable=False)
+    user_name = db.Column(db.String(50), nullable=False)
+    message = db.Column(db.String(2000), nullable=False)
+
+
+    def add(self):
+        db.session.begin()
+        db.session.add(self)
+        db.session.commit()
+        # db.session.close()
+
+    def __repr__(self):
+        return '<Post %r>' % self.user_id

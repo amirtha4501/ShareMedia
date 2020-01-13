@@ -16,7 +16,7 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
 </head>
 <body>
-    <form action="#">
+    <form class="bookmark-form" method="POST" action="">
         <div class="jumbotron">
             <img src="img/background.png" alt="background">
             <div class="login-box">
@@ -24,26 +24,60 @@
                     Login
                 </h1>
                 <div class="text-box">
-                    <input type="text" required="Required field"> <br>
+                    <input type="text" class="input user_name" required="Required field"> <br>
                     <label for="username">
                         <i class="fa fa-user" aria-hidden="true"></i>
                         Username
                     </label>
                 </div>
                 <div class="text-box">
-                    <input type="password" required="Required field"><br>
+                    <input type="password" class="input password" required="Required field"><br>
                     <label for="password"> 
                         <i class="fa fa-key" aria-hidden="true"></i>
                         Password
                     </label>
                 </div>
                 <a href="">
-                    <button class="btn">
+                    <button class="btn" type="submit" id="sign_in_btn">
                         Sign in
                     </button>
                 </a>
             </div>    
         </div>
     </form>
+    <!-- <script>
+        const get_in = document.getElementById('sign_in_btn');
+        // const users = JSON.parse(localStorage.getItem('users')) || [];
+        const bookmarkForm  = document.querySelector('.bookmark-form');
+        // const bookmarkInput = bookmarkForm.querySelector('input[type=text]');
+        // ,'input[type=text]'
+        const bookmarks     = [];
+        user_name = bookmarkForm.querySelector('.user_name');
+        password = bookmarkForm.querySelector('.password');
+        // JSON.parse(localStorage.getItem('bookmarks')) || 
+        function create_bookmark() {
+            // e.preventDefault();
+            user_name = user_name.value;
+            password = password.value;
+            // const title = bookmarkInput;
+            // console.log(title);
+            const bookmark = {
+                user_name: user_name,
+                password: password
+                // title: title
+            };
+            bookmarks.push(bookmark);
+            console.log(bookmarks);
+
+            bookmarkForm.reset();
+        }
+        create_bookmark();
+        // function user_login() {
+        //     alert("The user name is " + user_name + "\nThe password is " + password);
+        //     localStorage.setItem('users', JSON.stringify(users));
+        // }
+        // user_login();
+        // get_in.addEventListener('click', user_login);
+    </script> -->
 </body>
 </html>

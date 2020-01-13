@@ -1,10 +1,10 @@
-from manage import User, LoggedUsers, db, app
-from flask import Flask, request, jsonify, redirect, url_for
+from manage import User, LoggedUsers, LoggedUsersPost, db, app
+from flask import Flask, request, jsonify, redirect, url_for, render_template
 import json
 
 
 # USER class methods
-@app.route("/signup",methods=['GET','POST'])
+@app.route('/signup')
 def user_signup():
     input_data = request.get_json()
     get_data = request.json
@@ -35,7 +35,7 @@ def user_signup():
     )
     admin.add()
 
-    return "Signed Up"
+    return redirect('/listusers')
 
 
 @app.route("/listusers")
@@ -52,6 +52,7 @@ def list_users():
         }
         user_list.append(dic_user)    
     return jsonify(user_list)   
+    # return render_template('test.html',contacts=user_list)
 
 
 @app.route("/loggedusers",methods=['GET','POST'])
@@ -60,7 +61,7 @@ def logged_users():
     print(input_data['user_id'])
 
     existing_user = User.query.get(input_data['user_id'])
-    # print(existing_user.mobile)
+    print(existing_user.mobile)
 
     # last_name = input_data.get('last_name')
     # email=input_data.get('email')
@@ -79,7 +80,6 @@ def logged_users():
         print("You're already logged in")
         return "You're already logged in"
 
-
     log_users = LoggedUsers(
         user_id = input_data['user_id'],
         user_name = existing_user.user_name,
@@ -87,7 +87,31 @@ def logged_users():
     )
     log_users.add()
 
+    # return redirect('register.html')
     return "logged users"
+    # return redirect('/loggedusers/post')
 
+@app.route('/loggedusers/post')
+def post():
+    input_message = request.get_json()
+    print(input_message)
+    # if input_message == None:
+    #     print("Input message is required to post.")
+    
+    existing_user = User.query.get(input_message['user_id'])
+    print(existing_user)
+    print(existing_user.user_name)
+    print(existing_user.id)
+    print(input_message['message'])
+    # print(existing_user.user_name)
+
+    log_users_post = LoggedUsersPost(
+        user_id = input_message['user_id'],
+        user_name = existing_user.user_name,
+        message = input_message['message']
+    )
+    log_users_post.add()
+    # return json.dumps(log_users_post.__dict__ )
+    return "hi"
 
 app.run(host='0.0.0.0',port=7000,debug=True)

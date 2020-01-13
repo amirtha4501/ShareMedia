@@ -165,3 +165,30 @@ i {
     /* margin-top: 2em; */
     margin-right: 1.2em;
 }
+
+
+images------------------------------------------
+from flask import Flask, render_template, request
+...
+@app.route('/', methods=['GET', 'POST'])
+def index():
+    if request.method == 'POST':
+        file_obj = request.files
+        for f in file_obj:
+            file = request.files.get(f)
+            print (file.filename)
+        return "uploading..."
+    return render_template('index.html')
+
+
+	"user_id": 1,
+	"user_name":"a",
+	"email":"a@gmail.com"
+
+
+    "first_name":"c",
+	"last_name":"c",
+	"email":"c@gmail.com",
+	"mobile":"9999999988",
+	"password":"c",
+	"gender":"female"
