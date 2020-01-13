@@ -1,5 +1,8 @@
 from manage import User, LoggedUsers, LoggedUsersPost, db, app
 from flask import Flask, request, jsonify, redirect, url_for, render_template
+from datetime import datetime
+# from jinja2 import Markup
+# from flask_moment import Moment
 import json
 
 
@@ -61,7 +64,6 @@ def logged_users():
     print(input_data['user_id'])
 
     existing_user = User.query.get(input_data['user_id'])
-    print(existing_user.mobile)
 
     # last_name = input_data.get('last_name')
     # email=input_data.get('email')
@@ -74,6 +76,7 @@ def logged_users():
         return "User signup is needed to login"
         # return redirect(url_for('user_signup'))
 
+    print(existing_user.mobile)
     already_existing = LoggedUsers.query.filter_by(user_id=input_data['user_id']).first()
     
     if already_existing:
@@ -97,21 +100,37 @@ def post():
     print(input_message)
     # if input_message == None:
     #     print("Input message is required to post.")
-    
+
+    already_existing = LoggedUsers.query.filter_by(user_id=input_message['user_id']).first()
+    print(already_existing)
+    if not already_existing:
+        print("Login is needed to post")
+        return "Login is needed to post"
+        # moment = Moment(app)
+        # print(moment)
+        # return moment
+        # return Markup("<script>\ndocument.write(moment(\"%s\").%s);\n</script>" % (timestamp.strftime("%Y-%m-%dT%H:%M:%S Z"), format))
+
+        
     existing_user = User.query.get(input_message['user_id'])
     print(existing_user)
     print(existing_user.user_name)
     print(existing_user.id)
     print(input_message['message'])
-    # print(existing_user.user_name)
 
+    # print(existing_user.user_name)
+    
     log_users_post = LoggedUsersPost(
         user_id = input_message['user_id'],
         user_name = existing_user.user_name,
-        message = input_message['message']
-    )
+        message = input_message['message'],
+        time = datetime.utcnow()
+    )    
     log_users_post.add()
+    # print(time)
+
     # return json.dumps(log_users_post.__dict__ )
-    return "hi"
+    return "posted"
+    # return Markup("<script>\ndocument.write(moment(\"%s\").%s);\n</script>" % (self.timestamp.strftime("%Y-%m-%dT%H:%M:%S Z"), format))
 
 app.run(host='0.0.0.0',port=7000,debug=True)

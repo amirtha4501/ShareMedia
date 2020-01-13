@@ -192,3 +192,23 @@ def index():
 	"mobile":"9999999988",
 	"password":"c",
 	"gender":"female"
+
+
+    time0 = datetime.day
+    print(time0)
+    time1 = datetime.utcnow()
+    print(time1)
+    time2 =datetime.fold
+    print(time2)
+    time3 = datetime.ctime
+    print(time3)
+    time4 = datetime.date
+    print(time4)
+    time5 = datetime.fromisoformat
+    print(time5)
+    time6 = datetime.fromordinal
+    print(time6)
+    time7 = datetime.fromtimestamp
+    print(time7)
+    time8 = datetime.hour
+    print(time8)

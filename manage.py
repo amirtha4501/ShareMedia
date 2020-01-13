@@ -56,7 +56,7 @@ class LoggedUsersPost(db.Model):
     user_id = db.Column(db.Integer, nullable=False)
     user_name = db.Column(db.String(50), nullable=False)
     message = db.Column(db.String(2000), nullable=False)
-
+    time = db.Column(db.String(30), nullable=False)
 
     def add(self):
         db.session.begin()
