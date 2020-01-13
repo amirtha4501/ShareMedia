@@ -1,6 +1,7 @@
 from manage import User, LoggedUsers, LoggedUsersPost, db, app
 from flask import Flask, request, jsonify, redirect, url_for, render_template
 from datetime import datetime
+# import datetime
 # from jinja2 import Markup
 # from flask_moment import Moment
 import json
@@ -92,7 +93,7 @@ def logged_users():
 
     # return redirect('register.html')
     return "logged users"
-    # return redirect('/loggedusers/post')
+    # return redirect(url_for('post'))
 
 @app.route('/loggedusers/post')
 def post():
@@ -101,9 +102,9 @@ def post():
     # if input_message == None:
     #     print("Input message is required to post.")
 
-    already_existing = LoggedUsers.query.filter_by(user_id=input_message['user_id']).first()
-    print(already_existing)
-    if not already_existing:
+    login_existing = LoggedUsers.query.filter_by(user_id=input_message['user_id']).first()
+    print(login_existing)
+    if not login_existing:
         print("Login is needed to post")
         return "Login is needed to post"
         # moment = Moment(app)
@@ -112,14 +113,16 @@ def post():
         # return Markup("<script>\ndocument.write(moment(\"%s\").%s);\n</script>" % (timestamp.strftime("%Y-%m-%dT%H:%M:%S Z"), format))
 
         
-    existing_user = User.query.get(input_message['user_id'])
+    existing_user = LoggedUsers.query.get(input_message['user_id'])
     print(existing_user)
     print(existing_user.user_name)
     print(existing_user.id)
     print(input_message['message'])
 
     # print(existing_user.user_name)
-    
+    # now = datetime.datetime.now()
+    # print (now.strftime("%Y-%m-%d %H:%M:%S"))
+
     log_users_post = LoggedUsersPost(
         user_id = input_message['user_id'],
         user_name = existing_user.user_name,
@@ -132,5 +135,25 @@ def post():
     # return json.dumps(log_users_post.__dict__ )
     return "posted"
     # return Markup("<script>\ndocument.write(moment(\"%s\").%s);\n</script>" % (self.timestamp.strftime("%Y-%m-%dT%H:%M:%S Z"), format))
+
+@app.route('/loggedusers/comment')
+def comment():
+    input_content = request.get_json()
+    print(input_content)
+
+    login_existing = LoggedUsers.query.filter_by(user_id=input_content['user_id']).first()
+    print(login_existing)
+    
+    if not login_existing:
+        print("Login is needed to comment")
+        return "Login is needed to comment"
+    
+    existing_user = LoggedUsersPost.query.get(input_content['user_id'])
+    print(existing_user)
+    print(existing_user.user_id)
+    print(existing_user.user_name)
+
+    
+    return "comment"
 
 app.run(host='0.0.0.0',port=7000,debug=True)

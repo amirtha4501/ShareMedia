@@ -66,3 +66,20 @@ class LoggedUsersPost(db.Model):
 
     def __repr__(self):
         return '<Post %r>' % self.user_id
+
+class LoggedUsersComment(db.Model):
+    id = db.Column(db.Integer, primary_key = True)
+    user_id = db.Column(db.Integer, nullable=False)
+    post_id = db.Column(db.Integer, nullable=False)
+    user_name = db.Column(db.String(50), nullable=False)
+    comment = db.Column(db.String(2000), nullable=False)
+    comment_time = db.Column(db.String(30), nullable=False)
+    
+    def add(self):
+        db.session.begin()
+        db.session.add(self)
+        db.session.commit()
+        # db.session.close()
+
+    def __repr__(self):
+        return '<Comment %r>' % self.user_id
