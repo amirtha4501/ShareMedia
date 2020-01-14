@@ -212,3 +212,12 @@ def index():
     print(time7)
     time8 = datetime.hour
     print(time8)
+
+
+
+        # email=input_data.get('email'),
+        # mobile=input_data.get('mobile'),
+        # password=input_data.get('password'),
+        # # dob = input_data.get('dob'),
+        # gender = input_data.get('gender')
+        # dob = dob,
