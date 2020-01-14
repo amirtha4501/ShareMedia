@@ -24,6 +24,32 @@ def user_signup():
     gender = input_data.get('gender')
     user_name = first_name + " " + last_name
 
+    name_already_existing = User.query.filter_by(user_name=user_name).first()
+    email_already_existing = User.query.filter_by(email=email).first()
+    mobile_already_existing = User.query.filter_by(mobile=mobile).first()
+    password_already_existing = User.query.filter_by(password=password).first()
+    
+    if name_already_existing:
+        print("user name is already present")
+        return "user name is already present"
+
+    elif email_already_existing:
+        print("email is already present")
+        return "email name is already present"
+
+    elif mobile_already_existing:
+        print("mobile is already present")
+        return "mobile is already present"
+
+    elif password_already_existing:
+        print("password is already present")
+        return "password is already present"
+
+    # print(name_already_existing)
+    # print(email_already_existing)
+    # print(mobile_already_existing)
+    # print(password_already_existing)
+
     admin = User(
         user_name = user_name,
         # email=input_data.get('email'),
@@ -79,10 +105,19 @@ def logged_users():
 
     print(existing_user.mobile)
     already_existing = LoggedUsers.query.filter_by(user_id=input_data['user_id']).first()
+    # email_already_existing = User.query.filter_by(email=input_data['email']).first()
+    # password_already_existing = User.query.filter_by(password=input_data['password']).first()
+
     
     if already_existing:
         print("You're already logged in")
         return "You're already logged in"
+    # elif not email_already_existing:
+        # print("Email id is incorrect")
+        # return "Email id is incorrect"
+    # elif not password_already_existing:
+        # print("password is incorrect")
+        # return "Password is incorrect"
 
     log_users = LoggedUsers(
         user_id = input_data['user_id'],
@@ -149,52 +184,73 @@ def comment():
         return "Login is needed to comment"
     
     posted_existing_user = LoggedUsersPost.query.get(input_content['post_id'])
-    # print(posted_existing_user)
+    print(posted_existing_user)
     # print(posted_existing_user.user_id)
     # print(posted_existing_user.user_name)
     # print(posted_existing_user.message)
+    if posted_existing_user:
+        comment_existing = LoggedUsersComment.query.filter_by(post_id=input_content['post_id']).count()
 
-    log_users_comment = LoggedUsersComment(
-    user_id = input_content['user_id'],
-    post_id = input_content['post_id'],
-    user_name = login_existing.user_name,
-    comment = input_content['comment'],
-    comment_time = datetime.utcnow()
-    )    
-    log_users_comment.add()
-    
-    return "comment"
+        log_users_comment = LoggedUsersComment(
+        user_id = input_content['user_id'],
+        post_id = input_content['post_id'],
+        user_name = login_existing.user_name,
+        comment = input_content['comment'],
+        comment_count = comment_existing + 1,
+        comment_time = datetime.utcnow()
+        )    
+        log_users_comment.add() 
+        return "comment"
+
+    else:
+        print("No such posts to like.")
+        return "No such posts to like."
+
 
 
 @app.route('/loggedusers/post/like')
 def likes():
     input_content = request.get_json()
-    print(input_content)
+    # print(input_content)
 
     login_existing = LoggedUsers.query.filter_by(user_id=input_content['user_id']).first()
-    print(login_existing)
+    # print(login_existing)
     
     if not login_existing:
         print("Login is needed to like")
         return "Login is needed to like"
     
     posted_existing_user = LoggedUsersPost.query.get(input_content['post_id'])
-    # print(posted_existing_user)
+    print(posted_existing_user)
     # print(posted_existing_user.user_id)
     # print(posted_existing_user.user_name)
     # print(posted_existing_user.message)
+    if posted_existing_user:
+        # # count = 0
+        # # # if like == 0:
+        # #      count += 1
+        # # obtain = LoggedUsersLike.qu
+        # obtain = LoggedUsersLike.query.get(input_content['post_id'])
+        # # print(obtain.user_name, "obtain")
+        # if obtain == None:
+        #     obtain.like_count = 1
+        # else:
+        #     obtain.like_count = obtain.like_count + 1
+        # # like_count = obtain.like_count or 0
+        like_existing = LoggedUsersLike.query.filter_by(post_id=input_content['post_id']).count()
 
-    log_users_like = LoggedUsersLike(
-    user_id = input_content['user_id'],
-    post_id = input_content['post_id'],
-    user_name = login_existing.user_name,
-    # like = input_content['comment'],
-    like_time = datetime.utcnow()
-    )    
-    log_users_like.add()
-    
-    return "Liked"
-
+        log_users_like = LoggedUsersLike(
+        user_id = input_content['user_id'],
+        post_id = input_content['post_id'],
+        user_name = login_existing.user_name,
+        like_count = like_existing + 1,
+        like_time = datetime.utcnow()
+        )    
+        log_users_like.add()
+        return "Liked" 
+    else:
+        print("No such posts to like.")
+        return "No such posts to like."
 
 
 app.run(host='0.0.0.0',port=7000,debug=True)

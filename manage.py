@@ -73,6 +73,7 @@ class LoggedUsersComment(db.Model):
     post_id = db.Column(db.Integer, nullable=False)
     user_name = db.Column(db.String(50), nullable=False)
     comment = db.Column(db.String(2000), nullable=False)
+    comment_count = db.Column(db.Integer, nullable=False)
     comment_time = db.Column(db.String(30), nullable=False)
     
     def add(self):
@@ -90,6 +91,7 @@ class LoggedUsersLike(db.Model):
     post_id = db.Column(db.Integer, nullable=False)
     user_name = db.Column(db.String(50), nullable=False)
     # comment = db.Column(db.String(2000), nullable=False)
+    like_count = db.Column(db.Integer, nullable=False)
     like_time = db.Column(db.String(30), nullable=False)
     
     def add(self):
