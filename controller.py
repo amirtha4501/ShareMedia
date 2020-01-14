@@ -1,4 +1,4 @@
-from manage import User, LoggedUsers, LoggedUsersPost, db, app
+from manage import User, LoggedUsers, LoggedUsersPost, LoggedUsersComment, LoggedUsersLike, db, app
 from flask import Flask, request, jsonify, redirect, url_for, render_template
 from datetime import datetime
 # import datetime
@@ -114,10 +114,10 @@ def post():
 
         
     existing_user = LoggedUsers.query.get(input_message['user_id'])
-    print(existing_user)
-    print(existing_user.user_name)
-    print(existing_user.id)
-    print(input_message['message'])
+    # print(existing_user)
+    # print(existing_user.user_name)
+    # print(existing_user.id)
+    # print(input_message['message'])
 
     # print(existing_user.user_name)
     # now = datetime.datetime.now()
@@ -136,7 +136,7 @@ def post():
     return "posted"
     # return Markup("<script>\ndocument.write(moment(\"%s\").%s);\n</script>" % (self.timestamp.strftime("%Y-%m-%dT%H:%M:%S Z"), format))
 
-@app.route('/loggedusers/comment')
+@app.route('/loggedusers/post/comment')
 def comment():
     input_content = request.get_json()
     print(input_content)
@@ -148,12 +148,53 @@ def comment():
         print("Login is needed to comment")
         return "Login is needed to comment"
     
-    existing_user = LoggedUsersPost.query.get(input_content['user_id'])
-    print(existing_user)
-    print(existing_user.user_id)
-    print(existing_user.user_name)
+    posted_existing_user = LoggedUsersPost.query.get(input_content['post_id'])
+    # print(posted_existing_user)
+    # print(posted_existing_user.user_id)
+    # print(posted_existing_user.user_name)
+    # print(posted_existing_user.message)
 
+    log_users_comment = LoggedUsersComment(
+    user_id = input_content['user_id'],
+    post_id = input_content['post_id'],
+    user_name = login_existing.user_name,
+    comment = input_content['comment'],
+    comment_time = datetime.utcnow()
+    )    
+    log_users_comment.add()
     
     return "comment"
+
+
+@app.route('/loggedusers/post/like')
+def likes():
+    input_content = request.get_json()
+    print(input_content)
+
+    login_existing = LoggedUsers.query.filter_by(user_id=input_content['user_id']).first()
+    print(login_existing)
+    
+    if not login_existing:
+        print("Login is needed to like")
+        return "Login is needed to like"
+    
+    posted_existing_user = LoggedUsersPost.query.get(input_content['post_id'])
+    # print(posted_existing_user)
+    # print(posted_existing_user.user_id)
+    # print(posted_existing_user.user_name)
+    # print(posted_existing_user.message)
+
+    log_users_like = LoggedUsersLike(
+    user_id = input_content['user_id'],
+    post_id = input_content['post_id'],
+    user_name = login_existing.user_name,
+    # like = input_content['comment'],
+    like_time = datetime.utcnow()
+    )    
+    log_users_like.add()
+    
+    return "Liked"
+
+
 
 app.run(host='0.0.0.0',port=7000,debug=True)
