@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -15,69 +16,100 @@
     <!-- Latest compiled and minified JavaScript -->
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
 </head>
+
 <body>
     <form class="bookmark-form" method="POST" action="">
         <div class="jumbotron">
             <img src="img/background.png" alt="background">
+            <!-- <nav class="nav"> -->
+            <!-- <button class="btn">
+                    Home
+                </button> -->
+            <!-- <a href="" class="nav-register"> -->
+            <!-- <button class="btn"> -->
+            <!-- <label for=""> -->
+            <!-- Register -->
+            <!-- </label> -->
+            <!-- </button> -->
+            <!-- </a> -->
+            <!-- </nav>    -->
+            <nav>
+                <ul>
+                    <li>
+                        <a href="">Home</a>
+                    </li>
+                    <li>
+                        <a href="">Register</a>
+                    </li>
+                    <li>
+                        <a href="">Contact</a>
+                    </li>
+                    <!-- <li>
+                        <a href=”/print”>Print Design</a>
+                    </li>
+                    <li>
+                        <a href=”/web”>Web Design</a>
+                    </li> -->
+                </ul>
+            </nav>
             <div class="login-box">
                 <h1>
                     Login
                 </h1>
                 <div class="text-box">
-                    <input type="text" class="input user_name" required="Required field"> <br>
+                    <input type="number" id="user_id" name="user_id" class="input user_id" required="Required field"> <br>
+                    <label for="user_id">
+                        <!-- <i class="fa fa-dot" aria-hidden="true"></i> -->
+                        <i class="fa fa-id-badge"></i>
+                        User Id
+                    </label>
+                </div>
+                <div class="text-box">
+                    <input type="text" id="user_name" name="user_name" class="input user_name" required="Required field"> <br>
                     <label for="username">
                         <i class="fa fa-user" aria-hidden="true"></i>
                         Username
                     </label>
                 </div>
                 <div class="text-box">
-                    <input type="password" class="input password" required="Required field"><br>
+                    <input type="password" id="password" name="password" class="input password" required="Required field"><br>
                     <label for="password"> 
                         <i class="fa fa-key" aria-hidden="true"></i>
                         Password
                     </label>
                 </div>
-                <a href="">
-                    <button class="btn" type="submit" id="sign_in_btn">
-                        Sign in
-                    </button>
+                <a onclick="signin()" class="sign-in">
+                    <!-- <button class="btn" type="submit" id="sign_in_btn"> -->
+                    Sign in
+                    <!-- </button> -->
                 </a>
-            </div>    
+            </div>
         </div>
     </form>
-    <!-- <script>
-        const get_in = document.getElementById('sign_in_btn');
-        // const users = JSON.parse(localStorage.getItem('users')) || [];
-        const bookmarkForm  = document.querySelector('.bookmark-form');
-        // const bookmarkInput = bookmarkForm.querySelector('input[type=text]');
-        // ,'input[type=text]'
-        const bookmarks     = [];
-        user_name = bookmarkForm.querySelector('.user_name');
-        password = bookmarkForm.querySelector('.password');
-        // JSON.parse(localStorage.getItem('bookmarks')) || 
-        function create_bookmark() {
-            // e.preventDefault();
-            user_name = user_name.value;
-            password = password.value;
-            // const title = bookmarkInput;
-            // console.log(title);
-            const bookmark = {
-                user_name: user_name,
-                password: password
-                // title: title
-            };
-            bookmarks.push(bookmark);
-            console.log(bookmarks);
+    <script>
 
-            bookmarkForm.reset();
+        function signin() {
+            let data = {
+                user_id : document.getElementById('user_id').value,
+                username : document.getElementById('user_name').value,
+                password : document.getElementById('password').value
+            }
+            console.log(data);
+
+            let jsonString = JSON.stringify(data);
+            console.log(jsonString);
+
+            var xhr = new XMLHttpRequest();
+            xhr.open('POST', 'http://localhost:7000/loginusers');
+            xhr.send(jsonString);
+            xhr.onload = () => {
+
+            }
         }
-        create_bookmark();
-        // function user_login() {
-        //     alert("The user name is " + user_name + "\nThe password is " + password);
-        //     localStorage.setItem('users', JSON.stringify(users));
-        // }
-        // user_login();
-        // get_in.addEventListener('click', user_login);
-    </script> -->
+
+
+    </script>
+
 </body>
+
 </html>

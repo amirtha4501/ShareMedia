@@ -8,8 +8,8 @@ body {
 
 .bg-img {
     /* The image used */
-    background-image: url("img_nature.jpg");
-  
+    background-image: url(img/sky.jpg);
+
     /* Control the height of the image */
     min-height: 380px;
   
@@ -21,16 +21,17 @@ body {
 }
   
 
-/* .login-box {    
-    width: 280px; */
-/*    position: absolute; */ /*pos absolute, top & left results the ip field on image*/
-    /* top: 50%;  */
-    /* left: 50%; */
-    /* transform: translate(-50%,-50%); */
-    /* color: white; */
-    /* outline-width: 3px;
-    outline-color: blueviolet; */
-/* } */
+.login-box {    
+    width: 280px;
+    position: relative;
+   /* position: absolute; pos absolute, top & left results the ip field on image */
+    top: 50% !important; 
+    left: 50%;
+    transform: translate(-50%,-50%);
+    color: white;
+    outline-width: 3px;
+    outline-color: blueviolet;
+}
 .login-box h1 {
     float: left;
     font-size: 40px;

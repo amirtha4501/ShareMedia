@@ -65,7 +65,7 @@ def list_users():
     # return render_template('test.html',contacts=user_list)
 
 
-@app.route("/loggedusers",methods=['GET','POST'])
+@app.route("/loginusers",methods=['GET','POST'])
 def logged_users():
     input_data = request.get_json()
     print(input_data['user_id'])
