@@ -18,40 +18,22 @@
 </head>
 
 <body>
-    <form class="bookmark-form" method="POST" action="">
-        <div class="jumbotron">
-            <img src="img/background.png" alt="background">
-            <!-- <nav class="nav"> -->
-            <!-- <button class="btn">
-                    Home
-                </button> -->
-            <!-- <a href="" class="nav-register"> -->
-            <!-- <button class="btn"> -->
-            <!-- <label for=""> -->
-            <!-- Register -->
-            <!-- </label> -->
-            <!-- </button> -->
-            <!-- </a> -->
-            <!-- </nav>    -->
-            <nav>
-                <ul>
-                    <li>
-                        <a href="">Home</a>
-                    </li>
-                    <li>
-                        <a href="">Register</a>
-                    </li>
-                    <li>
-                        <a href="">Contact</a>
-                    </li>
-                    <!-- <li>
-                        <a href=”/print”>Print Design</a>
-                    </li>
-                    <li>
-                        <a href=”/web”>Web Design</a>
-                    </li> -->
-                </ul>
-            </nav>
+    <img src="img/background.png" alt="background">
+    <nav>
+        <ul>
+            <li>
+                <a href="">Home</a>
+            </li>
+            <li>
+                <a href="register.html">Register</a>
+            </li>
+            <li>
+                <a href="">Contact</a>
+            </li>
+        </ul>
+    </nav>
+    <div class="jumbotron">
+        <form class="bookmark-form" method="POST" action="">
             <div class="login-box">
                 <h1>
                     Login
@@ -59,13 +41,12 @@
                 <div class="text-box">
                     <input type="number" id="user_id" name="user_id" class="input user_id" required="Required field"> <br>
                     <label for="user_id">
-                        <!-- <i class="fa fa-dot" aria-hidden="true"></i> -->
                         <i class="fa fa-id-badge"></i>
                         User Id
                     </label>
                 </div>
                 <div class="text-box">
-                    <input type="text" id="user_name" name="user_name" class="input user_name" required="Required field"> <br>
+                    <input type="text" autocomplete="off" id="user_name" name="user_name" class="input user_name" required="Required field"> <br>
                     <label for="username">
                         <i class="fa fa-user" aria-hidden="true"></i>
                         Username
@@ -73,20 +54,34 @@
                 </div>
                 <div class="text-box">
                     <input type="password" id="password" name="password" class="input password" required="Required field"><br>
+                    <span><i class="fa fa-eye" onclick="showpassword()"></i></span>
                     <label for="password"> 
                         <i class="fa fa-key" aria-hidden="true"></i>
                         Password
+                        <!-- <i class="fa fa-eye-slash"></i> -->
                     </label>
                 </div>
                 <a onclick="signin()" class="sign-in">
-                    <!-- <button class="btn" type="submit" id="sign_in_btn"> -->
                     Sign in
-                    <!-- </button> -->
                 </a>
             </div>
-        </div>
-    </form>
+        </form>
+    </div>
     <script>
+
+        function showpassword() {
+            var ele = document.getElementById('password');
+            if (ele.type === 'password') {
+                ele.type = 'text';
+            }
+            else {
+                ele.type = 'password';
+                var change_icon = document.getElementsByClassName('fa fa-key');
+                // change_icon.innerHtml =
+            }
+            console.log(ele)
+
+        }
 
         function signin() {
             let data = {

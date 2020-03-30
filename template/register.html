@@ -10,49 +10,54 @@
         <link rel="stylesheet" href="newreg.css">
     </head>
     <body>
-        <div class="bg-img">
+        <img src="img/sky.jpg" alt="background">
+        <nav>
+            <ul>
+                <li>
+                    <a href="">Home</a>
+                </li>
+                <li>
+                    <a href="login.html">Login</a>
+                </li>
+                <li>
+                    <a href="">Contact</a>
+                </li>
+            </ul>
+        </nav>
+        <div class="bg-img jumbotron">
             <form action="/signup">
-                <img src="img/sky.jpg" alt="background">
-                <nav>
-                    <ul>
-                        <li>
-                            <a href="">Home</a>
-                        </li>
-                        <li>
-                            <a href="login.html">Login</a>
-                        </li>
-                        <li>
-                            <a href="">Contact</a>
-                        </li>
-                    </ul>
-                </nav>
                 <div class="login-box">
                     <h1> Register </h1>
                     <div class="text-box">
-                        <input type="text" required="Required field"><br>
-                        <label for="fname">First name</label>
+                        <input type="text" name="username" autocomplete="off" required="Required field"><br>
+                        <label for="username">
+                            <i class="fa fa-user-o"></i>
+                            User name
+                        </label>
                     </div>
                     <div class="text-box">
-                        <input type="text" required="Required field"><br>
-                        <label for="lname">Last name</label>
+                        <input type="email" name="email" autocomplete="off" required="Required field"><br>
+                        <label for="email">
+                            <i class="fa fa-envelope"></i>
+                            Mail
+                        </label>
                     </div>
                     <div class="text-box">
-                        <input type="email" required="Required field"><br>
-                        <label for="email">Mail</label>
+                        <input type="tel" name="mobile" autocomplete="off" required="Required field"><br>
+                        <label for="mobile">
+                            <i class="fa fa-phone"></i>
+                            Mobile
+                        </label>
                     </div>
                     <div class="text-box">
-                        <input type="tel" required="Required field"><br>
-                        <label for="mobile">Mobile</label>
-                    </div>
-                    <div class="text-box">
-                        <input type="password" required="Required field"><br>
+                        <input type="password" name="password" required="Required field"><br>
                         <label for="password">
                             <i class="fa fa-key" aria-hidden="true"></i>
-                            Newpassword
+                            New password
                         </label>
                     </div><br>
-                    <a href="login.html">
-                        <button class="btn">Login</button>
+                    <a onclick="login()" class="login">
+                        Login
                     </a> 
                 </div>
             </form>    

@@ -119,9 +119,15 @@ i {
 }
 
 /* nav code--------------------------------------------- */
+span {
+    position: absolute;
+    right: 0;
+    top: 14px;
+}
+
 nav {
     position: absolute;
-    top: 30px;
+    top: -15px;
 }
 
 h1,h2,h3,h4,h5,h6,p,a,ul,ol,li,small {
